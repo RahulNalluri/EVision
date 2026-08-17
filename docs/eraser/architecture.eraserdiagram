@@ -1,0 +1,45 @@
+cloud-architecture-diagram
+direction right
+colorMode pastel
+styleMode plain
+typeface clean
+
+"Live Context" [color: "#15D18B"] {
+  "Vehicle Telemetry" [icon: activity]
+  "Battery and BMS" [icon: battery]
+  "Route and Traffic" [icon: map]
+  "Weather and Road" [icon: cloud]
+  "Driving History" [icon: clock]
+}
+
+"EVision Intelligence" [color: "#168BFF"] {
+  "Signal Normalization" [icon: filter]
+  "Kaggle ML Model" [icon: cpu]
+  "Range Prediction" [icon: trending-up]
+  "Battery Utilization Index" [icon: gauge]
+  "Recommendation Policy" [icon: lightbulb]
+}
+
+"Copilot Layer" [color: "#32E6A1"] {
+  "Knowledge Base" [icon: book]
+  "RAG Retrieval" [icon: search]
+  "Natural Language Explanation" [icon: message-circle]
+}
+
+"In-Car Experience" [color: "#8FA8BA"] {
+  "Glanceable Car Screen" [icon: monitor]
+  "Live Suggestions" [icon: zap]
+  "Optional Voice or Chat" [icon: mic]
+  "Trip Summary" [icon: bar-chart]
+}
+
+"Vehicle Telemetry" > "Signal Normalization"
+"Battery and BMS" > "Signal Normalization"
+"Route and Traffic" > "Signal Normalization"
+"Weather and Road" > "Signal Normalization"
+"Driving History" > "Signal Normalization"
+"Signal Normalization" > "Kaggle ML Model" > "Range Prediction" > "Battery Utilization Index" > "Recommendation Policy"
+"Knowledge Base" > "RAG Retrieval" > "Natural Language Explanation"
+"Recommendation Policy" > "Natural Language Explanation"
+"Recommendation Policy" > "Glanceable Car Screen"
+"Natural Language Explanation" > "Live Suggestions", "Optional Voice or Chat", "Trip Summary"

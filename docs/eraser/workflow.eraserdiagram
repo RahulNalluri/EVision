@@ -1,0 +1,35 @@
+flow-chart
+direction right
+colorMode pastel
+styleMode plain
+typeface clean
+
+"Trip Starts" [shape: oval, color: "#15D18B", icon: power]
+"Read Live Vehicle Signals" [color: "#168BFF", icon: activity]
+"Enrich with Route, Traffic and Weather" [color: "#168BFF", icon: map]
+"Normalize and Build Features" [color: "#8FA8BA", icon: filter]
+"Predict Trip Energy and Range" [color: "#32E6A1", icon: trending-up]
+"Calculate Utilization and Wastage" [color: "#32E6A1", icon: gauge]
+"Inefficiency Detected?" [shape: diamond, color: "#FFB547"]
+"Generate Personalized Action" [color: "#15D18B", icon: lightbulb]
+"Keep Monitoring Quietly" [color: "#8FA8BA", icon: eye]
+"Show Short Tip on Car Screen" [color: "#168BFF", icon: monitor]
+"Driver Asks a Question?" [shape: diamond, color: "#FFB547"]
+"Retrieve Trusted Battery Context" [color: "#32E6A1", icon: search]
+"Explain in Natural Language" [color: "#15D18B", icon: message-circle]
+"Create Trip Summary" [shape: document, color: "#8FA8BA", icon: bar-chart]
+"Trip Ends" [shape: oval, color: "#15D18B", icon: flag]
+
+"Trip Starts" > "Read Live Vehicle Signals" > "Enrich with Route, Traffic and Weather"
+"Enrich with Route, Traffic and Weather" > "Normalize and Build Features" > "Predict Trip Energy and Range"
+"Predict Trip Energy and Range" > "Calculate Utilization and Wastage" > "Inefficiency Detected?"
+"Inefficiency Detected?" > "Generate Personalized Action": Yes
+"Inefficiency Detected?" > "Keep Monitoring Quietly": No
+"Generate Personalized Action" > "Show Short Tip on Car Screen"
+"Keep Monitoring Quietly" > "Driver Asks a Question?"
+"Show Short Tip on Car Screen" > "Driver Asks a Question?"
+"Driver Asks a Question?" > "Retrieve Trusted Battery Context": Yes
+"Retrieve Trusted Battery Context" > "Explain in Natural Language"
+"Driver Asks a Question?" > "Create Trip Summary": No / Trip complete
+"Explain in Natural Language" > "Create Trip Summary"
+"Create Trip Summary" > "Trip Ends"

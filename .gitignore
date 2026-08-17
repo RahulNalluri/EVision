@@ -1,0 +1,8 @@
+.venv/
+.venv_evision/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+data/raw/**/*.zip
+EVision_Documentation/

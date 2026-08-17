@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EVision is an AI Battery Utilization Copilot for Electric Vehicles."
+    />
+    <title>EVision | AI Battery Utilization Copilot</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="cockpit-frame" aria-label="EVision in-car display">
+        <div class="screen-bezel">
+          <div class="car-screen">
+            <header class="screen-topbar">
+              <div>
+                <span class="brand-mark">EVision</span>
+                <span class="mode-copy">AI Battery Copilot</span>
+              </div>
+              <div class="status-strip">
+                <span id="clock">19:42</span>
+                <span id="driveMode">ECO</span>
+                <span>Regen Auto</span>
+                <span id="cabinTemp">Cabin 24C</span>
+              </div>
+            </header>
+
+            <div class="screen-grid">
+              <aside class="range-column">
+                <div class="metric-block battery">
+                  <span id="batteryValue">68%</span>
+                  <small>Battery</small>
+                </div>
+                <div class="metric-block">
+                  <span id="currentRange">214 km</span>
+                  <small>Current predicted range</small>
+                </div>
+                <div class="metric-block optimized">
+                  <span id="optimizedRange">241 km</span>
+                  <small>Optimized predicted range</small>
+                </div>
+              </aside>
+
+              <section class="driver-cluster" aria-label="Battery utilization index">
+                <div class="gauge-ring">
+                  <div class="needle" id="gaugeNeedle"></div>
+                  <div class="gauge-core">
+                    <span id="utilizationIndex">82</span>
+                    <small>Utilization Index</small>
+                  </div>
+                </div>
+                <div class="route-readout">
+                  <span id="routeDistance">168 km route</span>
+                  <span id="arrivalBuffer">46 km buffer</span>
+                </div>
+              </section>
+
+              <section class="guidance-column" aria-label="Live AI guidance">
+                <article class="suggestion-card primary">
+                  <div>
+                    <span class="label">AI suggestion</span>
+                    <h2 id="primarySuggestion">
+                      Traffic is dense ahead. Hold 42-48 km/h and avoid sharp
+                      starts.
+                    </h2>
+                  </div>
+                  <span id="suggestionImpact">Save 3-5 km</span>
+                </article>
+
+                <div class="mini-cards">
+                  <article class="suggestion-card">
+                    <span class="label warning">Tip</span>
+                    <p id="secondaryTip">Set cabin to 24C to reduce AC load.</p>
+                  </article>
+                  <article class="suggestion-card">
+                    <span class="label">Energy</span>
+                    <p id="energyShort">Motor 56% · AC 21% · Waste 9.8%</p>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-panel" aria-label="Simulation controls">
+        <div class="panel-heading">
+          <p class="eyebrow">Live simulator</p>
+          <h2>Change driving conditions and watch EVision respond</h2>
+        </div>
+
+        <div class="controls-grid">
+          <label>
+            Battery
+            <input id="battery" type="range" min="18" max="95" value="68" />
+            <span id="batteryLabel">68%</span>
+          </label>
+          <label>
+            Speed
+            <input id="speed" type="range" min="15" max="120" value="46" />
+            <span id="speedLabel">46 km/h</span>
+          </label>
+          <label>
+            Acceleration
+            <input id="acceleration" type="range" min="0" max="100" value="36" />
+            <span id="accelerationLabel">Smooth</span>
+          </label>
+          <label>
+            Braking
+            <input id="braking" type="range" min="0" max="100" value="42" />
+            <span id="brakingLabel">Balanced</span>
+          </label>
+          <label>
+            AC load
+            <input id="acLoad" type="range" min="0" max="100" value="38" />
+            <span id="acLabel">24C</span>
+          </label>
+          <label>
+            Route distance
+            <input id="route" type="range" min="20" max="320" value="168" />
+            <span id="routeLabel">168 km</span>
+          </label>
+        </div>
+
+        <div class="select-row">
+          <label>
+            Traffic
+            <select id="traffic">
+              <option value="light">Light</option>
+              <option value="moderate">Moderate</option>
+              <option value="dense" selected>Dense</option>
+            </select>
+          </label>
+          <label>
+            Weather
+            <select id="weather">
+              <option value="clear" selected>Clear</option>
+              <option value="hot">Hot</option>
+              <option value="rain">Rain</option>
+              <option value="wind">Wind</option>
+            </select>
+          </label>
+          <label>
+            Road type
+            <select id="road">
+              <option value="city" selected>City</option>
+              <option value="highway">Highway</option>
+              <option value="hills">Hills</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </label>
+          <label>
+            Drive mode
+            <select id="mode">
+              <option value="eco" selected>Eco</option>
+              <option value="normal">Normal</option>
+              <option value="sport">Sport</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="insights-grid">
+        <article class="insight-card breakdown-card">
+          <div class="panel-heading compact">
+            <p class="eyebrow">Energy consumption</p>
+            <h2>Breakdown</h2>
+          </div>
+          <div class="bars" id="breakdownBars"></div>
+        </article>
+
+        <article class="insight-card tips-card">
+          <div class="panel-heading compact">
+            <p class="eyebrow">Proactive guidance</p>
+            <h2>Live tips</h2>
+          </div>
+          <div id="tipsList" class="tips-list"></div>
+        </article>
+
+        <article class="insight-card assistant-card">
+          <div class="panel-heading compact">
+            <p class="eyebrow">Optional assistant</p>
+            <h2>Ask EVision</h2>
+          </div>
+          <div class="quick-questions">
+            <button data-question="Why is my battery draining fast?">
+              Why is my battery draining fast?
+            </button>
+            <button data-question="Can I reach my destination without charging?">
+              Can I reach my destination?
+            </button>
+            <button data-question="How can I save more battery?">
+              How can I save more battery?
+            </button>
+            <button data-question="Should I fast charge now?">
+              Should I fast charge now?
+            </button>
+          </div>
+          <form id="assistantForm" class="assistant-form">
+            <input
+              id="assistantInput"
+              type="text"
+              placeholder="Ask about range, charging, AC, or driving style"
+            />
+            <button type="submit">Ask</button>
+          </form>
+          <div id="assistantAnswer" class="assistant-answer">
+            Select a question or ask your own.
+          </div>
+        </article>
+
+        <article class="insight-card report-card">
+          <div class="panel-heading compact">
+            <p class="eyebrow">Trip summary</p>
+            <h2>What EVision learned</h2>
+          </div>
+          <div id="tripReport" class="trip-report"></div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

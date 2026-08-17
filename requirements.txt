@@ -1,0 +1,2 @@
+# EVision currently runs with the Python standard library.
+# No runtime packages are required for the backend prototype.
