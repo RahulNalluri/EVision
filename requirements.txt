@@ -1,2 +1,17 @@
-# EVision currently runs with the Python standard library.
-# No runtime packages are required for the backend prototype.
+# EVision supported Python stack
+# Requires Python 3.11+; developed and tested with Python 3.12.
+
+# API, validation, and configuration
+fastapi==0.141.1
+uvicorn[standard]==0.52.3
+pydantic==2.13.4
+python-dotenv==1.2.3
+
+# Data preparation and machine learning
+numpy==2.5.2
+pandas==3.0.5
+scikit-learn==1.9.0
+joblib==1.5.3
+
+# Generative AI provider SDK
+openai==2.54.0

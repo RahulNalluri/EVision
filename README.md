@@ -19,7 +19,7 @@ For example:
 ## What This Repository Contains
 
 - A polished in-car copilot web prototype
-- A Python backend API using only the standard library
+- A Python backend with a supported FastAPI production stack and an offline standard-library server
 - A Kaggle-trained energy prediction model blended with explainable range analytics
 - A proactive suggestion engine
 - A simple assistant layer for driver questions
@@ -129,9 +129,15 @@ Create and activate a virtual environment:
 ```powershell
 python -m venv .venv_evision
 .\.venv_evision\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
-The backend and ML pipeline use only the Python standard library, so no extra runtime packages are required.
+The offline demo retains standard-library fallbacks, while `requirements.txt` installs the supported production and experimentation stack:
+
+- **FastAPI, Uvicorn, and Pydantic** for the production API and request validation
+- **NumPy, pandas, scikit-learn, and Joblib** for dataset processing, model training, evaluation, and persistence
+- **OpenAI SDK** for optional generative AI integration
+- **python-dotenv** for local environment configuration
 
 Prepare the downloaded Kaggle dataset:
 
